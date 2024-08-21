@@ -15,7 +15,7 @@ Write-Information "Setting up Cred manager
 $fileserver="myServer"
 $user="sfadmin"
 $secret="Zora#4752@"
-Write-Host "Configuring FSLogix all Cloud Settings by adding details to Windows Credential Manager."
+Write-Information "Configuring FSLogix all Cloud Settings by adding details to Windows Credential Manager."
 cmd.exe /C "cmdkey /add:$($fileServer) /user:$($user) /pass:$($secret)"
 }
 catch {}
