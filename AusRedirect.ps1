@@ -1,12 +1,14 @@
 Write-Information "Creating directory on PC...."
-$dirName = "$env:SystemDrive\3m-Temp"
+##$dirName = "$env:SystemDrive\3m-Temp"
+$dirName = "C:\Windows\Temp\3m-Temp"
 New-Item -ItemType Directory -Force -Path $dirName
 Start-Transcript -Path $dirName\3m_CustomScripts.log -Append
+$localAccount = "3mlocaladmin"
 try
 {
 Write-Information "Creating directory on PC...."
-    $dirName = "$env:SystemDrive\3m-Temp"
-    New-Item -ItemType Directory -Force -Path $dirName
+    ##$dirName = "C:\Windows\Temp\3m-Temp"
+    ##New-Item -ItemType Directory -Force -Path $dirName
     $preferLanguage = 'en-AU'
     $outFile = "$($dirName)\3m_Language.xml"
     
@@ -93,6 +95,12 @@ Write-Information "Creating directory on PC...."
     All the settings has been updated successfully....`
     Please restart your computer for updated settings...`
     =================================================="
+
+    Write-Information "Adding users to FSLogix exclude group..."
+Add-LocalGroupMember -Group "FSLogix Profile Exclude List" -Member $($localAccount)
+Add-LocalGroupMember -Group "FSLogix ODFC Exclude List" -Member $($localAccount)
+Write-Information "Get Local user details..."
+Get-LocalGroupMember -Group "FSLogix Profile Exclude List"
 	
 	Write-Information "The Script has finished."
 
