@@ -1,5 +1,5 @@
 param(
-    [string]$stgKeyValue
+    [string]$stgKeyValue,
     [string]$stgAccName
 )
 
