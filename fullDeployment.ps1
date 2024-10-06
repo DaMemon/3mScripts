@@ -173,11 +173,8 @@ Add-LocalGroupMember -Group $groupToAdd -Member $userToAdd -ErrorAction Continue
 "User list in the Group."
 Get-LocalGroupMember -Group $groupToAdd
 }
-*>
-
- 
+#>
 	Write-Information "The Script has finished."
-
     }
     catch{}
     Stop-Transcript
