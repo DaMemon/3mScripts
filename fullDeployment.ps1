@@ -1,5 +1,6 @@
 param(
-    [string]$secretValue
+    [string]$stgKeyValue
+    [string]$stgAccName
 )
 
 Write-Information "Creating directory on PC...."
@@ -114,13 +115,13 @@ $fslogixLocation = "HKLM:\SOFTWARE\FSLogix"
 $regPath = "HKLM:\SOFTWARE\FSLogix\profiles"
 $regAppPath = "HKLM:\SOFTWARE\FSLogix\Apps"
 $outlookonline = "HKLM:\SOFTWARE\Policies\Microsoft\office\16.0\Outlook\OST"
-$vhdLocation = "\\3mavdstgacc.file.core.windows.net\avdprofiles"
-$storageAccountName="3mavdstgacc"
-$fileServer="3mavdstgacc.file.core.windows.net"
+$vhdLocation = "\\$stgAccName.file.core.windows.net\avdprofiles"
+$storageAccountName="$stgAccName"
+$fileServer="$stgAccName.file.core.windows.net"
 $user="localhost\$storageAccountName"
 $shareName="avdprofiles"
 $profileShare="\\$fileServer\$shareName"
-$secret=$secretValue
+$secret=$stgKeyValue
 New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa" -Name "LsaCfgFlags" -Value 0 -force
 
 Write-Information "Configuring FSLogix all Cloud Settings by adding details to Windows Credential Manager."
