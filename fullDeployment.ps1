@@ -175,6 +175,11 @@ Add-LocalGroupMember -Group $groupToAdd -Member $userToAdd -ErrorAction Continue
 Get-LocalGroupMember -Group $groupToAdd
 }
 #>
+
+Write-Information "Configuring FSLogix all Cloud Settings by adding details to Windows Credential Manager."
+cmd.exe /C "cmdkey /add:$($fileServer) /user:$($user) /pass:$($secret)"
+Write-Host "The Script has finished."
+
 	Write-Information "The Script has finished."
     }
     catch{}
